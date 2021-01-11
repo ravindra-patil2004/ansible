@@ -19,8 +19,8 @@
     enabled: true
 
 - name: create the index.html
-  copy:
-    content: "This is web server"
+  template:
+    src: index.html.j2
     dest: /var/www/html/index.html
 
 - name: add http service into firewalls
