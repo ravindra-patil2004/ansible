@@ -1,0 +1,34 @@
+---
+- name: install httpd
+  yum:
+    name:
+      - httpd
+      - firewalld
+    state: present
+
+- name: start and enabled httpd
+  service:
+    name: httpd
+    state: started
+    enabled: true
+
+- name: start and enabled firewalld
+  service: 
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: create the index.html
+  copy:
+    content: "This is web server"
+    dest: /var/www/html/index.html
+
+- name: add http service into firewalls
+  firewalld:
+    service: http
+    state: enabled
+    permanent: true
+    immediate: yes
+
+
+    
